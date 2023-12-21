@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata: 
+  name: nginx-stage
+  labels: 
+    app: nginx
+    env: stage
+    team: infra
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata: 
+  name: quota-nginx-stage
+  namespace: nginx-stage
+spec:
+  hard:
+    requests.cpu: "400m"
+    requests.memory: "400Mi"
+    limits.cpu: "400m"
+    limits.memory: "400Mi"

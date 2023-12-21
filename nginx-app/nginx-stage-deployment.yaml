@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-stage-deployment
+  namespace: nginx-stage
+  labels:
+    app: nginx
+    env: stage
+    team: infra
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+      env: stage
+  template:
+    metadata:
+      labels:
+        name: nginx-stage
+        app: nginx
+        env: stage
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.24
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "100Mi"
+            cpu: "100m"
+          requests:
+            memory: "100Mi"
+            cpu: "100m"

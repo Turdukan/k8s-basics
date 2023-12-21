@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata: 
+  name: apache-stage
+  labels: 
+    app: apache
+    env: stage
+    team: infra
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata: 
+  name: quota-apache-stage
+  namespace: apache-stage
+spec:
+  hard:
+    requests.cpu: "400m"
+    requests.memory: "400Mi"
+    limits.cpu: "400m"
+    limits.memory: "400Mi"
